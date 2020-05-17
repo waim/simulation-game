@@ -1,0 +1,56 @@
+@startuml
+' 作成日:2020/05/17 waim
+
+title 簡易シミュレーションゲームの\n簡易クラス図
+
+class プレイヤー{
+ - name : String
+ - 身分 : String
+ - 学年 : String
+ - 持ち物リスト : ArrayList<持ち物>
+ - 性格美人度 : int
+ - 女子力度 : int
+ - モテ度 : int
+ - 行動力 : int
+ + getter()
+ + setter()
+ + 持ち物を使う()
+ + 持ち物の一覧を見る()
+}
+
+class NPC {
+ - npcId : int
+ - name : String
+ - キャラビジュアル : Img
+ - 身分 : String
+ - 学年 : String
+ - 紹介文 : String
+ - 攻略可否 : Boolean
+ - 攻略難易度 : String
+ - 主人公への好感度 : int
+ + getter()
+ + setter()
+}
+
+class 持ち物 {
+ - itemId : int
+ - name : String
+ - 説明文 : String
+ + getter()
+ + setter()
+}
+
+class Img {
+ - 何か画像をどうにかするやつ
+ + getter()
+ + setter()
+}
+
+プレイヤー ..> 持ち物
+NPC --> Img
+NPC ..> 持ち物
+
+legend
+実装はJava6ベース。
+end legend
+@enduml
