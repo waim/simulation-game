@@ -1,0 +1,8 @@
+# 要らないファイル
+/.classpath
+/.project
+
+# 要らないフォルダ
+.settings/
+bin/
+target/

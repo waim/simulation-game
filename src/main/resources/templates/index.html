@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+<title>学園恋愛シミュレーションゲーム(プロトタイプ)</title>
+</head>
+<body>
+	プレイヤー名を入力してね。<br>
+	<form th:action="@{/}" method="POST" th:object="${viewParam}">
+		<input type="text" th:field="*{name}">
+		<input type="submit" value="送信">
+	</form>
+
+	<div th:with="name = ${viewParam.name}">
+		<p th:if="${name} == ''">学生A：なんて呼んだらいいかな？</p>
+		<p th:if="${name} != ''">学生A：こんにちは、[[${name}]]さん！</p>
+	</div>
+</body>
+</html>
