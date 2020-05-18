@@ -1,6 +1,7 @@
 # 要らないファイル
 /.classpath
 /.project
+/.gcloudignore
 
 # 要らないフォルダ
 .settings/

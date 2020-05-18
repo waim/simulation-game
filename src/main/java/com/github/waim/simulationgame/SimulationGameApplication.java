@@ -7,6 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.github.waim.simulationgame.model.GameSystem;
+import com.github.waim.simulationgame.model.NPC;
+import com.github.waim.simulationgame.model.Player;
+
 /**
  * SimulationGameApplication
  * @author waim
@@ -24,7 +28,6 @@ public class SimulationGameApplication {
 	public String show(Model model) {
 		ViewParam viewParam = new ViewParam();
 		viewParam.setName("");
-//		viewParam.setIsFirstTime(true);
 
 		model.addAttribute("viewParam", viewParam);
 
@@ -34,8 +37,20 @@ public class SimulationGameApplication {
 
 	@PostMapping("/")
 	public String submit(ViewParam viewParam) {
-//		viewParam.setIsFirstTime(false);
+		GameSystem gSystem = new GameSystem();
+
+		// プレイヤーを生成する
+		Player player = gSystem.newPlayer(viewParam.getName());
+
+		// NPCを適当に作る
+		NPC npc1 = gSystem.newNpc(player);
+
+		// NPCがしゃべる
+		String message = npc1.randomSay();
+		viewParam.setMessage(npc1.getName() + ":" + message);
+
 		return "index";
 	}
+
 
 }

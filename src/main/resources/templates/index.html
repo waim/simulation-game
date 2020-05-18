@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
 <title>学園恋愛シミュレーションゲーム(プロトタイプ)</title>
+<style type="text/css">
+<!--
+h1 { font-size: medium; }
+-->
+</style>
 </head>
 <body>
+	<h1>学園恋愛シミュレーションゲーム(プロトタイプ)</h1>
 	プレイヤー名を入力してね。<br>
 	<form th:action="@{/}" method="POST" th:object="${viewParam}">
 		<input type="text" th:field="*{name}">
@@ -12,8 +18,8 @@
 	</form>
 
 	<div th:with="name = ${viewParam.name}">
-		<p th:if="${name} == ''">学生A：なんて呼んだらいいかな？</p>
-		<p th:if="${name} != ''">学生A：こんにちは、[[${name}]]さん！</p>
+		<p th:if="${name} == ''">-ここにメッセージが出ます-</p>
+		<p th:if="${name} != ''">[[${viewParam.message}]]</p>
 	</div>
 </body>
 </html>

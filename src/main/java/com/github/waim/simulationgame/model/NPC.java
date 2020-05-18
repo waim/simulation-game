@@ -1,4 +1,9 @@
 package com.github.waim.simulationgame.model;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * ノンプレイヤーキャラクター
  * @author waim
@@ -35,8 +40,12 @@ public class NPC {
      * プレイヤーへの好感度
      */
     private int favorabilityRating;
+    /**
+     * プレイヤーに対するメッセージ一覧(不変のListとして保持する)
+     */
+    private List<String> messages;
 
-    public NPC(int npcId, String name, Object visualEffects, String standing, String grade, String text, Boolean canFall, String difficultyLevel, int favorabilityRating) {
+    NPC(int npcId, String name, Object visualEffects, String standing, String grade, String text, Boolean canFall, String difficultyLevel, int favorabilityRating) {
         this.npcId = npcId;
         this.name = name;
         this.visualEffects = visualEffects;
@@ -46,6 +55,14 @@ public class NPC {
         this.canFall = canFall;
         this.difficultyLevel = difficultyLevel;
         this.favorabilityRating = favorabilityRating;
+
+        this.messages = Collections.singletonList("");
+
+    }
+
+    void setMessages(List<String> messages) {
+    	// 不変のリストにする
+    	this.messages = Collections.unmodifiableList(messages);
     }
 
     public void setFavorabilityRating(int favorabilityRating) {
@@ -87,4 +104,15 @@ public class NPC {
     public int getFavorabilityRating() {
         return favorabilityRating;
     }
+
+    /**
+     * ランダムに何かをしゃべる。
+     * @param playerName
+     * @return
+     */
+	public String randomSay() {
+		ArrayList<String> list = new ArrayList<String>(this.messages);
+		Collections.shuffle(list);
+		return list.get(0);
+	}
 }

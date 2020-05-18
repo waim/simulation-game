@@ -24,6 +24,15 @@ public class Item {
         this.text = text;
     }
 
+    /**
+     * 空のItemを返す(itemId = 0)
+     * @return
+     */
+    static Item emptyItem() {
+    	Item item = new Item(0, "", "");
+    	return item;
+    }
+
     public int getItemId() {
         return itemId;
     }

@@ -1,6 +1,8 @@
 package com.github.waim.simulationgame.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * ゲームプレイヤー
@@ -21,9 +23,9 @@ public class Player {
      */
     private String grade;
     /**
-     * 持ち物リスト
+     * 持ち物リスト(不変のListとして保持する)
      */
-    private ArrayList<Item> itemList;
+    private List<Item> itemList;
     /**
      * 性格美人度
      */
@@ -41,11 +43,11 @@ public class Player {
      */
     private int expOfAction;
 
-    public Player(String name, String standing, String grade, int expOfPersonality, int expOfFeminine, int expOfPopular, int expOfAction) {
+    Player(String name, String standing, String grade, int expOfPersonality, int expOfFeminine, int expOfPopular, int expOfAction) {
         this.name = name;
         this.standing = standing;
         this.grade = grade;
-        this.itemList = new ArrayList<Item>();
+        this.itemList = Collections.singletonList(Item.emptyItem());
         this.expOfPersonality = expOfPersonality;
         this.expOfFeminine = expOfFeminine;
         this.expOfPopular = expOfPopular;
@@ -78,11 +80,14 @@ public class Player {
     }
 
     public ArrayList<Item> getItemList() {
-        return itemList;
+        return new ArrayList<Item>(this.itemList);
     }
 
     public void setItem(Item item){
-        this.itemList.add(item);
+    	ArrayList<Item> items = new ArrayList<Item>(this.itemList);
+    	items.add(item);
+
+        this.itemList = Collections.unmodifiableList(items);
     }
 
     public int getExpOfPersonality() {
