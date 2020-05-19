@@ -1,5 +1,6 @@
 package com.github.waim.simulationgame.model;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,9 +14,9 @@ public class NPC {
 	private int npcId;
 	private String name;
 	/**
-	 * キャラビジュアル
+	 * キャラビジュアル(画像のパスを指定する)
 	 */
-	private Object visualEffects;
+	private Path imgPath;
 	/**
 	 * 身分
 	 */
@@ -45,10 +46,10 @@ public class NPC {
 	 */
 	private List<String> messages;
 
-	NPC(int npcId, String name, Object visualEffects, String standing, String grade, String text, Boolean canFall, String difficultyLevel, int favorabilityRating) {
+	NPC(int npcId, String name, Path imgPath, String standing, String grade, String text, Boolean canFall, String difficultyLevel, int favorabilityRating) {
 		this.npcId = npcId;
 		this.name = name;
-		this.visualEffects = visualEffects;
+		this.imgPath = imgPath;
 		this.standing = standing;
 		this.grade = grade;
 		this.text = text;
@@ -77,8 +78,8 @@ public class NPC {
 		return name;
 	}
 
-	public Object getVisualEffects() {
-		return visualEffects;
+	public Path getImgPath() {
+		return imgPath;
 	}
 
 	public String getStanding() {

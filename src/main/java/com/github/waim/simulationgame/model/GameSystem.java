@@ -1,5 +1,6 @@
 package com.github.waim.simulationgame.model;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 /**
  * ゲームシステム
@@ -38,7 +39,7 @@ public class GameSystem {
 		NPC npc1 = new NPC(
 				1
 				, "女学生K"
-				, "(・∀・)"
+				, FileSystems.getDefault().getPath("/mockPath", "npcImg.jpg")
 				, "高校生"
 				, "3年"
 				, "NPC説明テキスト"
